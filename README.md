@@ -49,20 +49,47 @@ A real-time order processing system built with Apache Kafka and Python, featurin
 
 ## Usage
 
+### Setting up the Data Pipeline
+
 1. Start the order processor (consumer):
    ```bash
    python stream_processor.py
    ```
+   This will:
+   - Create a Kafka consumer for the 'orders' topic
+   - Process incoming orders in real-time
+   - Log high-value orders (>$200)
+   - Generate statistics every 10 seconds
 
-2. Launch the dashboard:
-   ```bash
-   streamlit run dashboard.py
-   ```
-
-3. Start generating orders (in a new terminal):
+2. Start generating orders (in a new terminal):
    ```bash
    python stream_producer.py
    ```
+   This will:
+   - Generate random orders with varying amounts
+   - Send orders to Kafka every 0.5 seconds
+   - Simulate real-world order flow
+
+### Launching the Dashboard
+
+3. Start the Streamlit dashboard:
+   ```bash
+   streamlit run dashboard.py
+   ```
+   The dashboard will:
+   - Open automatically in your default browser
+   - Display real-time order metrics
+   - Show interactive time series charts
+   - Update every 5 seconds
+   - Maintain a 30-minute history
+
+4. Access the dashboard:
+   - Open your browser to `http://localhost:8501`
+   - Monitor real-time statistics:
+     * Total orders processed
+     * Current revenue
+     * Order trends over time
+     * Revenue distribution
 
 ## Dashboard Features
 
@@ -75,6 +102,12 @@ A real-time order processing system built with Apache Kafka and Python, featurin
   - 30-minute history retention
   - Interactive charts
   - Recent orders table
+
+- **Visualization Components**:
+  - Line charts for order trends
+  - Revenue progression over time
+  - High-value order alerts
+  - Category distribution
 
 ## Configuration
 
@@ -90,6 +123,7 @@ A real-time order processing system built with Apache Kafka and Python, featurin
 - **Dashboard Settings** (dashboard.py):
   - Update interval: 5 seconds
   - History retention: 30 minutes
+  - Default port: 8501
 
 ## Error Handling
 
